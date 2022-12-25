@@ -1,0 +1,114 @@
+
+@model Tbl_Personel
+<p class="alert alert-success p-3 m-3">personel Crud</p>
+
+<form action="/Personel/addPersonel" method="post">
+<div class="row p-3 m-3">
+    <input type="text" asp-for="Id" class="d-none">
+
+    <div class="col-3">
+
+        <input asp-for="Name" required class="form-control" type="text" placeholder="Name">
+
+    </div>
+
+    <div class="col-3">
+        <input asp-for="Family" required class="form-control" type="text" placeholder="Family">
+
+    </div>
+
+    <div class="col-3">
+
+      @* selector for gender *@
+
+      <select required asp-for="Gender" class="form-control">
+        <option value="">select Gender</option>
+        <option value="man">Man</option>
+        <option value="male">Male</option>
+      </select>
+
+    </div>
+
+    <div class="col-3">
+
+        <input asp-for="Birthday" required class="form-control" type="date" placeholder="Name">
+
+    </div>
+
+    
+
+    <div class="col-3 mt-3">
+        <button type="submit" class="form-control btn btn-success">save</button>
+    </div>
+
+
+
+</div>
+</form>
+<hr>
+
+
+<form action="/Personel/Personel" method="post">
+<div class="row text-center m-3">
+
+    <div class="col-4">
+            <input required name="txt" type="text" class="form-control" placeholder="Serch">
+
+
+    </div>
+    <div class="col-2">
+            <button type="submit" class="form-control btn btn-primary">serch</button>
+
+
+    </div>
+
+
+
+</div>
+</form>
+
+
+
+<hr>
+
+
+<div class="row mt-5">
+    <table class="table  ">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>family</th>
+                <th>Gender</th>
+                <th>BirthDay</th>
+               
+                <th>proccess</th>
+            </tr>
+
+        </thead>
+
+           
+        <tbody>
+
+            @foreach(var item in ViewBag.Personel)
+           
+            {
+                 <tr>
+                <td>@item.Name</td>
+                <td>@item.Family</td>
+                <td>@item.Gender</td>
+                <td>@item.Birthday</td>
+               
+                <td>
+                    <a href="/Personel/delete/@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure delete?')">delete</a>
+                    <a href="/Personel/Personel/@item.Id" class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+            }
+
+           
+
+
+
+    </table>
+
+</div>
